@@ -1,0 +1,24 @@
+# --------------------------------------------------------------------------------------------------
+# Retrieve Latest Amazon Linux 2 AMI ID
+# --------------------------------------------------------------------------------------------------
+data "aws_ami" "amazon_linux_2" {
+ most_recent = true
+ owners = ["amazon"]
+
+ filter {
+   name   = "owner-alias"
+   values = ["amazon"]
+ }
+
+ filter {
+   name   = "name"
+   values = ["amzn2-ami-hvm*"]
+ }
+}
+
+# --------------------------------------------------------------------------------------------------
+# Retrieve Availability Zones
+# --------------------------------------------------------------------------------------------------
+data "aws_availability_zones" "available" {
+  state = "available"
+}
